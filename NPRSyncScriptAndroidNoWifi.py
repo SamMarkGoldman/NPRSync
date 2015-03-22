@@ -50,11 +50,9 @@ def downloadMp3s( num ):
 
 	try:
 		stringNum = str(storyNum)
-		print "before if"
 		if num < 10:
 			stringNum = '0' + str(num)
 
-		print "after if"
 		fileNamePieces = url.split("/")
 		fileNameFull = fileNamePieces[len(fileNamePieces) - 1]
 		fileName = fileNameFull.split("?")[0]
