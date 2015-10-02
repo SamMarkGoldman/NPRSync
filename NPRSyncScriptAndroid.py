@@ -1,4 +1,3 @@
-import android
 import urllib2
 import os
 import datetime
@@ -85,9 +84,9 @@ def downloadMp3s( num ):
 		file.write(html)
 		file.close()
 
-		id3info = ID3(filePath)
-		oldTitle = id3info['TITLE']
-		id3info['TITLE'] = stringNum + oldTitle
+		# id3info = ID3(filePath)
+		# oldTitle = id3info['TITLE']
+		# id3info['TITLE'] = stringNum + oldTitle
 	except urllib2.HTTPError, e:
 		serverConnectionErrorCount += 1
 		print("Can't connect, {0} error".format(e.code))
