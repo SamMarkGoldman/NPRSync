@@ -2,6 +2,7 @@ import urllib2
 import os
 import datetime
 import time
+import sys
 from os.path import expanduser
 from bs4 import BeautifulSoup
 from ID3 import *
@@ -36,13 +37,11 @@ serverConnectionErrorCount = 0
 #storyNum = 1
 
 
-
-def getStoryLinks():
-	response = urllib2.urlopen('http://www.npr.org/programs/all-things-considered/')
+def getStoryLinks(show_url):
+	response = urllib2.urlopen(show_url)
 
 	showPage = BeautifulSoup(response.read())
-	#listItems = showPage("li", class_="download")
-	fullLinks = showPage.select("li.download a")
+	fullLinks = showPage.select("div.audio-module-tools > ul > li.audio-tool.audio-tool-download a")
 
 	links = []
 	for link in fullLinks:
@@ -99,8 +98,11 @@ def downloadMp3s( num ):
 		storyNum -= 1
 	return
 
+show_url = 'http://www.npr.org/programs/all-things-considered/'
+if 'me' in sys.argv:
+	show_url = 'http://www.npr.org/programs/morning-edition/'
 
-storyLinks = getStoryLinks()
+storyLinks = getStoryLinks(show_url)
 
 for storyNum in range(1, len(storyLinks)):
 	downloadMp3s(storyNum)
