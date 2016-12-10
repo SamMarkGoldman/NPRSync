@@ -63,14 +63,13 @@ def downloadMp3s( num ):
 	global storyNum
 
 	try:
-		stringNum = str(storyNum)
-		if num < 10:
-			stringNum = '0' + str(num)
+		stringNum = "%02d" % storyNum
 
 		fileNamePieces = url.split("/")
 		fileNameFull = fileNamePieces[len(fileNamePieces) - 1]
 		fileName = fileNameFull.split("?")[0]
-		filePath = mp3Dir + '/' + fileName
+
+		filePath = mp3Dir + '/' + stringNum + '-' + fileName
 		if os.path.isfile(filePath):
 			return
 		print("Attemping to download file at {0}".format(url))
