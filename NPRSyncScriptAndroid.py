@@ -76,7 +76,7 @@ def downloadMp3s( num ):
 		response = urllib2.urlopen(url)
 		html = response.read()
 
-		if num == 1:
+		if num == 0:
 			deleteMp3s()
 		file = open(filePath, 'w')
 		file.write(html)
@@ -103,7 +103,7 @@ if 'me' in sys.argv:
 
 storyLinks = getStoryLinks(show_url)
 
-for storyNum in range(1, len(storyLinks)):
+for storyNum in range(0, len(storyLinks)):
 	downloadMp3s(storyNum)
 
 
